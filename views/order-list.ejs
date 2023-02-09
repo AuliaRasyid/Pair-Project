@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
-    <title>Product Toko</title>
+    <title>Order Product Toko</title>
 </head>
+
 <body>
     <nav>
         <ul>
             <li><a href="/">Shoestore</a></li>
-            <li><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
@@ -20,34 +20,39 @@
         <h1>
             <%= dataStore.name %>
         </h1>
+        <br>
+        <h3>
+            <%= order.orderNumber %>
+        </h3>
+        <p style="text-align:right; margin-right: 10%;"><a href="/seller/<%= order.id %>/status" class="detail">Change Status</a> </p>
     </div>
+    
     <div>
         <table border="1">
             <thead>
                 <tr>
-                    <th>Image Product</th>
-                    <th>Name Product</th>
-                    <th>Category</th>
-                    <th>Size</th>
+                    <th>Nama Product</th>
+                    <th>Quantity</th>
                     <th>Price</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% products.forEach((el,index) => { %>
+                <% order.Products.forEach((el,index)=> { %>
                     <tr>
-                        <td><img src="<%= el.image %>" alt="Gambar Product"></td>
-                        <td><%= el.name %></td>                        
-                        <td><%= el.category %></td>
-                        <td><%= formatCurrency(el.price) %></td>
-                        <td><%= el.size %></td>
                         <td>
-                            <a href="/customer/6/<%= dataStore.id %>/<%= el.id %>/buy" class="detail">Beli</a>
+                            <%= el.name %>
+                        </td>
+                        <td>
+                            <%= el.OrderItem.quantity %>
+                        </td>
+                        <td>
+                           <%= el.price %>
                         </td>
                     </tr>
-                <% }) %>
+                    <% }) %>
             </tbody>
         </table>
     </div>
 </body>
+
 </html>

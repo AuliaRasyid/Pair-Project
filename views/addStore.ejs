@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
-    <title>Restock Product</title>
+    <title>Add Product</title>
 </head>
 
 <body>
@@ -17,15 +17,7 @@
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </nav>
-        <div class="dataStore-detail">
-            <h1>
-               Store <%= dataStore.name %>
-            </h1>
-            <p>
-                With Product Name is <%= product.name %>
-             </p>
-        </div>
-        
+        <br>
         <div class="dataStore-detail">
             <% if (errors) { %>
                 <% errors.split(',').forEach(element => { %>
@@ -35,15 +27,17 @@
                 <% }) %>
             <% } %>
         </div>
-        
-        <br>
-        <form action="/seller/<%= dataStore.id %>/<%= product.id %>/restock" method="post">
+        <form action="/admin/add" method="post">
             <div>
-                Stock
-                <input type="number" name="stock" value="<%= product.stock %>">
+                Name Product
+                <input type="text" name = "name" >
             </div>
             <div>
-                <input type="submit" value="Restock" class="detail">
+                Email Store
+                <input type="email" name="emailStore" >
+            </div>
+            <div>
+                <input type="submit" value="Add Store" class="detail">
             </div>
         </form>
     </div>

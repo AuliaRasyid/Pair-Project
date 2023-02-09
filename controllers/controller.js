@@ -6,13 +6,50 @@ class Controller {
     static home(req, res) {
         Store.findAll()
             .then(stores => {
-                // res.send(stores)
-                res.render('home', { stores })
+                res.render('homeCustomer', { stores })
             })
             .catch(err => {
                 res.send(err)
             })
+    }
 
+    static homeSeller(req, res) {
+        Store.findAll()
+            .then(stores => {
+                res.render('homeSeller', { stores })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static buyProduct(req, res) {
+        const { id, idProduct, idCustomer } = req.params
+        let price
+        User.findByPk(idCustomer)
+            .then(user => {
+                if (!user) {
+                    throw 'User Not Found'
+                }
+                return Store.findByPk(id)
+            })
+            .then(store => {
+                if (!store) {
+                    throw 'Store Not Found'
+                }
+                return Product.findByPk(idProduct)
+            })
+            .then((product) => {
+                price = product.price
+                return Order.create({ totalPrice: price, UserId: idCustomer, StoreId: id, date: new Date() })
+            })
+            .then((order) => {
+                const idOrder = order.id
+                return OrderItem.create({ OrderId: idOrder, ProductId: idProduct, quantity: 1, price })
+            })
+            .then(() => {
+                res.redirect(`/detailStoreProduct/${id}`)
+            })
     }
 
     static findProductStore(req, res) {
@@ -77,6 +114,7 @@ class Controller {
 
     static showEditStock(req, res) {
         const { id, idProduct } = req.params
+        const { errors } = req.query
         let dataStore
         Store.findByPk(id)
             .then(store => {
@@ -88,7 +126,7 @@ class Controller {
             })
             .then(product => {
 
-                res.render('restock', { product, dataStore })
+                res.render('restock', { product, dataStore, errors })
             })
             .catch(err => {
                 res.send(err)
@@ -112,7 +150,12 @@ class Controller {
                 res.redirect(`/seller/${id}`)
             })
             .catch(err => {
-                res.send(err)
+                if (err.name === "SequelizeValidationError") {
+                    const errors = err.errors.map(el => el.message)
+                    res.redirect(`/seller/${id}/${idProduct}/restock?errors=${errors}`)
+                } else {
+                    res.send(err)
+                }
             })
     }
 
@@ -140,6 +183,7 @@ class Controller {
         const { id, idProduct } = req.params
         let dataStore
         const category = Product.categoryProduct
+        const { errors } = req.query
         Store.findByPk(id)
             .then(store => {
                 dataStore = store
@@ -149,7 +193,7 @@ class Controller {
                 return Product.findByPk(idProduct)
             })
             .then(product => {
-                res.render('product-seller-edit', { product, dataStore, category })
+                res.render('product-seller-edit', { product, dataStore, category, errors })
             })
             .catch(err => {
                 res.send(err)
@@ -159,7 +203,6 @@ class Controller {
     static updateProduct(req, res) {
         const { id, idProduct } = req.params
         const { name, stock, category, price, image, size } = req.body
-        console.log(req.body)
         Store.findByPk(id)
             .then(store => {
                 if (!store) {
@@ -168,25 +211,31 @@ class Controller {
                 return Product.findByPk(idProduct)
             })
             .then(product => {
-                product.update({ name, stock, category, price, image, size })
+                return product.update({ name, stock, category, price, image, size })
             })
             .then(() => {
                 res.redirect(`/seller/${id}`)
             })
             .catch(err => {
-                res.send(err)
+                if (err.name === "SequelizeValidationError") {
+                    const errors = err.errors.map(el => el.message)
+                    res.redirect(`/seller/${id}/${idProduct}/edit?errors=${errors}`)
+                } else {
+                    res.send(err)
+                }
             })
     }
 
     static showAddProduct(req, res) {
         const { id } = req.params
         const category = Product.categoryProduct
+        const { errors } = req.query
         Store.findByPk(id)
             .then(store => {
                 if (!store) {
                     throw `Store Not Found`
                 }
-                res.render('product-add', { store, category })
+                res.render('product-add', { store, category, errors })
             })
             .catch(err => {
                 res.send(err)
@@ -207,27 +256,84 @@ class Controller {
                 res.redirect(`/seller/${id}`)
             })
             .catch(err => {
-                res.send(err)
+                if (err.name === "SequelizeValidationError") {
+                    const errors = err.errors.map(el => el.message)
+                    res.redirect(`/seller/${id}/add?errors=${errors}`)
+                } else {
+                    res.send(err)
+                }
             })
     }
 
     static listOrder(req, res) {
         const { id } = req.params
-        Store.findByPk(id, {
-            include: Order
-        })
+        let dataStore
+        Store.findByPk(id)
             .then(store => {
                 if (!store) {
                     throw `Store Not Found`
                 }
-                const idStore = store.id
-                
-                // return store.findAll({ include: [OrderItem] })
-                res.send(store)
-                // res.render('order', { store })
+                dataStore = store
+                return Order.findAll({
+                    include: [Product, User, OrderItem],
+                    where: {
+                        StoreId: id,
+                        status: false
+                    }
+                })
+
             })
-            .then(data => {
-                res.send(data)
+            .then(order => {
+                res.render('order', { order, dataStore, formatCurrency })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static showStatusOrder(req, res) {
+        console.log(req.params)
+        let dataStore
+        Store.findByPk(req.params.id)
+            .then(store => {
+                dataStore = store
+                return Order.findByPk(req.params.idOrder, {
+                    include: [Product, User],
+                    where: {
+                        StoreId: req.params.id
+                    }
+                })
+            })
+            .then(order => {
+                res.render('order-list', { order, dataStore })
+                // res.send(order)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static changeStatus(req, res) {
+        let StoreId
+        Order.findByPk(req.params.idOrder, {
+            include: OrderItem
+        })
+            .then(order => {
+                return order.update({ status: true })
+            })
+            .then((orderupdated) => {
+                StoreId = orderupdated.StoreId
+                let quantity = orderupdated.OrderItems[0].quantity
+                let productId = orderupdated.OrderItems[0].ProductId
+                Product.decrement('stock', {
+                    by: quantity,
+                    where: {
+                        id: productId
+                    }
+                })
+            })
+            .then(() => {
+                res.redirect(`/seller/${StoreId}/order`)
             })
             .catch(err => {
                 res.send(err)

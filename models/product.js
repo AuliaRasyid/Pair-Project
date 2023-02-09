@@ -16,15 +16,86 @@ module.exports = (sequelize, DataTypes) => {
       Product.belongsToMany(models.Order, { through: models.OrderItem, foreignKey: 'ProductId' })
     }
 
-    static categoryProduct = ["Lokal","International"]
+    static categoryProduct = ["Lokal", "International"]
+    
   }
   Product.init({
-    name: DataTypes.STRING,
-    stock: DataTypes.INTEGER,
-    category: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    size: DataTypes.INTEGER,
-    image: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Name Product cannot Null'
+        },
+        notEmpty: {
+          msg: 'Name Product cannot Empty'
+        }
+      }
+    },
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Stock Product cannot Null'
+        },
+        notEmpty: {
+          msg: 'Stock Product cannot Empty'
+        },
+        min: {
+          args: 1,
+          msg : 'Stock Minimal satu'
+        }
+      }
+    },
+    category: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notNull: {
+          msg: 'Category cannot Null'
+        },
+        notEmpty: {
+          msg: 'Category cannot Empty'
+        }
+      }
+    },
+    price: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      validate: {
+        notNull: {
+          msg: 'Price cannot Null'
+        },
+        notEmpty: {
+          msg: 'Price cannot Empty'
+        }
+      }
+    },
+    size: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      validate: {
+        notNull: {
+          msg: 'Size cannot Null'
+        },
+        notEmpty: {
+          msg: 'Size cannot Empty'
+        }
+      }
+    },
+    image: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notNull: {
+          msg: 'Image cannot Null'
+        },
+        notEmpty: {
+          msg: 'Image cannot Empty'
+        }
+      }
+    },
     StoreId: DataTypes.INTEGER
   }, {
     sequelize,
