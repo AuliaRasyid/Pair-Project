@@ -1,36 +1,36 @@
 [
     {
-        "username": "Aul",
+        "userName": "Aul",
         "password": "123456",
         "email": "aulia@gmail.com",
         "role": "Admin"
     },
     {
-        "username": "Rivaldo",
+        "userName": "Rivaldo",
         "password": "112233",
         "email": "rivaldo@gmail.com",
         "role": "Penjual"
     },
     {
-        "username": "Aldo",
+        "userName": "Aldo",
         "password": "112233",
         "email": "aldo@gmail.com",
         "role": "Penjual"
     },
     {
-        "username": "Rival",
+        "userName": "Rival",
         "password": "112233",
         "email": "rival@gmail.com",
         "role": "Penjual"
     },
     {
-        "username": "Valdo",
+        "userName": "Valdo",
         "password": "112233",
         "email": "valdo@gmail.com",
         "role": "Penjual"
     },
     {
-        "username": "Agif",
+        "userName": "Agif",
         "password": "111222",
         "email": "agif@gmail.com",
         "role": "Pembeli"
