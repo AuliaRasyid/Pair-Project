@@ -58,7 +58,13 @@ class Controller {
     }
 
     static productSeller(req, res) {
-        const { id } = req.params
+        const { id  } = req.params
+        const currentId = req.session.user.id
+        const error = "Not your Store"
+       if(+id !== currentId){
+        return res.redirect(`/product?error=${error}`)
+       }
+       
         let dataStore
         Store.findByPk(id)
             .then(store => {
@@ -82,6 +88,7 @@ class Controller {
 
     static showEditStock(req, res) {
         const { id, idProduct } = req.params
+        
         let dataStore
         Store.findByPk(id)
             .then(store => {
@@ -241,7 +248,6 @@ class Controller {
 
     static buyProduct(req, res) {
         const { id, idProduct, idCustomer } = req.params
-        console.log(req.params)
         let price
         User.findByPk(idCustomer)
             .then(user => {

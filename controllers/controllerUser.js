@@ -8,10 +8,10 @@ const bcrypt = require('bcryptjs')
 class ControllerUser {
     
     static homeLogin(req,res){
+        const{id} = req.session.user
         const {error} = req.query
-        console.log(error)
         Store.findAll()
-            .then(stores => {
+        .then(stores => {
                 // res.send(stores)
                 res.render('homeLogin', { stores ,error})
             })
@@ -47,6 +47,7 @@ class ControllerUser {
                     if(isValidPassword){
 
                         req.session.user = {id:user.id, role:user.role , userName:user.userName}
+                        req.session.userId = user.id
                         // console.log(req.session.user)
                         return res.redirect('/product')
                     }
@@ -81,6 +82,10 @@ class ControllerUser {
                 res.redirect("/")
             }
         })
+    }
+
+    static DetailUser(req,res){
+        res.render("createDetailUser")
     }
 }
 

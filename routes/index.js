@@ -13,6 +13,8 @@ router.get('/detailStoreProduct/:Storeid',isLogin, Controller.findProductStore)
 router.get("/login", ControllerUser.login)
 router.post("/login",ControllerUser.postlogin)
 
+router.get("/detailUser" , ControllerUser.DetailUser)
+
 router.get("/logout",ControllerUser.logout)
 
 router.use("/register",register)

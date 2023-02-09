@@ -7,21 +7,11 @@
     <title>Form Login</title>
 </head>
 <body>
-    <header>
-        <nav>
-            
-            <ul class="nav__links">
-                <li><h3>Nama Toko</h3></li>
-                <li><a href="#">Home</a></li>
-            </ul>
-        </nav>
-        
-    </header>
-    <br><br>
+    
     <% if (error) { %>
-     <p style="text-align: center; color: red;"><%= error %></p>
+     <p style="text-align: center; color: red;margin-top: 100px;"><%= error %></p>
     <% } %>
-    <form action="/login" method="post" style="text-align: center;">
+    <form action="/login" method="post" style="text-align: center; margin-top: 50px;">
         <div>
             <label for="">Email</label><br>
             <input type="email" name="email">
