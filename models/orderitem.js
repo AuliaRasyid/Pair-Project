@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const product = require('./product');
 module.exports = (sequelize, DataTypes) => {
   class OrderItem extends Model {
     /**
@@ -11,14 +12,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      OrderItem.belongsToMany(models.User, { through: models.Order});
-      OrderItem.belongsToMany(models.Store, { through: models.Product});
+      OrderItem.belongsTo(models.Order)
+      OrderItem.belongsTo(models.Product)
+      OrderItem.belongsToMany(models.User, { through: models.Order ,as:"buyer" });
+      // OrderItem.belongsToMany(models.Store, { through: models.Product , as:"store"});
     }
   }
   OrderItem.init({
     quantity: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
-    PruductId: DataTypes.INTEGER,
+    ProductId: DataTypes.INTEGER,
     OrderId : DataTypes.INTEGER
   }, {
     sequelize,
