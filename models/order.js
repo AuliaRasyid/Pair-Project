@@ -16,13 +16,23 @@ module.exports = (sequelize, DataTypes) => {
       Order.hasMany(models.OrderItem)
       Order.belongsToMany(models.Product, { through: models.OrderItem, foreignKey: 'OrderId' })
     }
+
+
+    get statusOrder() {
+      if (this.status == true) {
+        return 'Berhasil'
+      } else {
+        return "Menunggu"
+      }
+    }
+    
   }
   Order.init({
     date: DataTypes.DATE,
     totalPrice: DataTypes.INTEGER,
     status: {
-     type: DataTypes.BOOLEAN,
-     defaultValue: false
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     orderNumber: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
@@ -32,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Order',
   });
 
-  Order.beforeCreate((order)=>{
+  Order.beforeCreate((order) => {
     order.orderNumber = `${Math.random()}-${order.date.getFullYear()}`
   })
 
