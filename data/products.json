@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Sepatu Baru ",
+        "StoreId": 1,
+        "stock": 10,
+        "category": "NIKE",
+        "price": 100000
+    },
+    {
+        "name": "Sepatu Baru Banget ",
+        "StoreId": 1,
+        "stock": 10,
+        "category": "Lokak",
+        "price": 100000
+    },
+    {
+        "name": "Sepatu Lama",
+        "StoreId": 2,
+        "stock": 20,
+        "category": "Vans",
+        "price": 200000
+    },
+    {
+        "name": "Sepatu Gak lama-lama banget",
+        "StoreId": 3,
+        "stock": 30,
+        "category": "Converse",
+        "price": 300000
+    }
+]

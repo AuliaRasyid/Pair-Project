@@ -1,0 +1,39 @@
+[
+    {
+        "name": "Aul",
+        "role": "Admin",
+        "gender": "Male",
+        "UserId": 1
+    },
+    {
+        "name": "Rivaldo",
+        "role": "Penjual",
+        "gender": "Male",
+        "UserId": 2
+    },
+    {
+        "name": "Aldo",
+        "role": "Penjual",
+        "gender": "Male",
+        "UserId": 3
+    },
+    {
+        "name": "Rival",
+        "role": "Penjual",
+        "gender": "Male",
+        "UserId": 4
+    },
+    {
+        "name": "Valdo",
+        "role": "Penjual",
+        "gender": "Male",
+        "UserId": 5
+    },
+    {
+        "name": "Agif",
+        "role": "Pembeli",
+        "gender": "Female",
+        "UserId": 6
+    }
+
+]

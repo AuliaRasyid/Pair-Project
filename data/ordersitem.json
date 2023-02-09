@@ -1,0 +1,26 @@
+[
+    {
+        "OrderId": 1,
+        "ProductId": 1,
+        "quantity": 2,
+        "price": 200000
+    },
+    {
+        "OrderId": 2,
+        "ProductId": 2,
+        "quantity": 1,
+        "price": 100000
+    },
+    {
+        "OrderId": 3,
+        "ProductId": 3,
+        "quantity": 3,
+        "price": 600000
+    },
+    {
+        "OrderId": 4,
+        "ProductId": 4,
+        "quantity": 2,
+        "price": 600000
+    }
+]

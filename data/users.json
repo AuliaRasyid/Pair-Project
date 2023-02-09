@@ -1,0 +1,38 @@
+[
+    {
+        "username": "Aul",
+        "password": "123456",
+        "email": "aulia@gmail.com",
+        "role": "Admin"
+    },
+    {
+        "username": "Rivaldo",
+        "password": "112233",
+        "email": "rivaldo@gmail.com",
+        "role": "Penjual"
+    },
+    {
+        "username": "Aldo",
+        "password": "112233",
+        "email": "aldo@gmail.com",
+        "role": "Penjual"
+    },
+    {
+        "username": "Rival",
+        "password": "112233",
+        "email": "rival@gmail.com",
+        "role": "Penjual"
+    },
+    {
+        "username": "Valdo",
+        "password": "112233",
+        "email": "valdo@gmail.com",
+        "role": "Penjual"
+    },
+    {
+        "username": "Agif",
+        "password": "111222",
+        "email": "agif@gmail.com",
+        "role": "Pembeli"
+    }
+]

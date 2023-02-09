@@ -1,17 +1,22 @@
-[{
-    "name": "Hernando",
-    "emailStore": "hfalvey0@nature.com",
+[
+  {
+    "name": "NIKE",
+    "emailStore": "nike@gmail.com",
     "UserId": 2
-  }, {
-    "name": "Amby",
-    "emailStore": "ableazard1@a8.net",
-    "UserId": 2
-  }, {
-    "name": "Cassius",
-    "emailStore": "cpiperley2@imageshack.us",
-    "UserId": 1
-  }, {
-    "name": "Brian",
-    "emailStore": "bbeiderbeck3@domainmarket.com",
+  },
+  {
+    "name": "Adidas",
+    "emailStore": "adidas@gmail.com",
+    "UserId": 3
+  },
+  {
+    "name": "Converse",
+    "emailStore": "converse@gmail.com",
     "UserId": 4
-  }]
+  },
+  {
+    "name": "Vans",
+    "emailStore": "vans@gmail.com",
+    "UserId": 5
+  }
+]
