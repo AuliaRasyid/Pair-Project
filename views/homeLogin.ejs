@@ -13,12 +13,16 @@
             <li><a href="/">Shoestore</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Register</a></li>
+            <li><a href="/logout">Logout</a></li>
             
         </ul>
     </nav>
     <div class="dataStore-detail">
         <h1>Welcome TO MY Paradise</h1>
     </div>
+    <% if (error) { %>
+        <p style="text-align: center; color: red;"><%= error %></p>
+       <% } %>
     <div>
         <table border="1">
             <thead>

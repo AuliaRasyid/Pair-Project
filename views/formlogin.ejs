@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.css">
     <title>Form Login</title>
 </head>
 <body>
@@ -19,10 +18,13 @@
         
     </header>
     <br><br>
-    <form action="" method="post" style="text-align: center;">
+    <% if (error) { %>
+     <p style="text-align: center; color: red;"><%= error %></p>
+    <% } %>
+    <form action="/login" method="post" style="text-align: center;">
         <div>
-            <label for="">Username</label><br>
-            <input type="email" name="username">
+            <label for="">Email</label><br>
+            <input type="email" name="email">
         </div><br>
         <div>
             <label for="">Password</label><br>

@@ -1,7 +1,13 @@
 const Controller = require('../controllers/controller')
+const ControllerUser = require('../controllers/controllerUser')
 
 const router = require('express').Router()
+const {isLogin} = require("../midleware/auth")
 
-router.get('/', Controller.mainProduct)
+
+router.use(isLogin)
+
+router.get('/', ControllerUser.homeLogin)
+router.get('/:idCustomer/:id/:idProduct/buy', Controller.buyProduct)
 
 module.exports = router

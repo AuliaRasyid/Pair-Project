@@ -16,6 +16,7 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
+    
     <div class="dataStore-detail">
         <h1>
             <%= dataStore.name %>
@@ -40,7 +41,7 @@
                         <td><%= el.category %></td>
                         <td><%= formatCurrency(el.price) %></td>
                         <td>
-                            <a href="/login" class="detail">Beli</a>
+                            <a href="/product/<%= id %>/<%= dataStore.id %>/<%= el.id %>/buy" class="detail">Beli</a>
                         </td>
                     </tr>
                 <% }) %>

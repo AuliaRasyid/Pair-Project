@@ -3,6 +3,8 @@ const { Order, OrderItem, Product, Store, User, UserDetail } = require("../model
 const { Op } = require("sequelize");
 class Controller {
 
+  
+
     static home(req, res) {
         Store.findAll()
             .then(stores => {
@@ -16,9 +18,10 @@ class Controller {
     }
 
     static findProductStore(req, res) {
-        const { id } = req.params
+        const { Storeid } = req.params
+        const{id} = req.session.user
         let dataStore
-        Store.findByPk(id)
+        Store.findByPk(Storeid)
             .then(store => {
                 dataStore = store
                 if (!store) {
@@ -26,7 +29,7 @@ class Controller {
                 }
                 return Product.findAll({
                     where: {
-                        StoreId: id,
+                        StoreId: Storeid,
                         stock: {
                             [Op.gt]: 0
                         }
@@ -34,7 +37,9 @@ class Controller {
                 })
             })
             .then(products => {
-                res.render('products', { products, dataStore, formatCurrency })
+                
+                // res.send(dataStore)
+                res.render('products', { products, dataStore, formatCurrency,id,error })
             })
             .catch(err => {
                 res.send(err)
@@ -159,7 +164,7 @@ class Controller {
     static updateProduct(req, res) {
         const { id, idProduct } = req.params
         const { name, stock, category, price, image, size } = req.body
-        console.log(req.body)
+        // console.log(req.body)
         Store.findByPk(id)
             .then(store => {
                 if (!store) {
@@ -233,6 +238,32 @@ class Controller {
                 res.send(err)
             })
     }
+
+    static buyProduct(req, res) {
+        const { id, idProduct, idCustomer } = req.params
+        console.log(req.params)
+        let price
+        User.findByPk(idCustomer)
+            .then(user => {
+                return Store.findByPk(id)
+            })
+            .then(store => {
+                return Product.findByPk(idProduct)
+            })
+            .then((product) => {
+                price = product.price
+                return Order.create({ totalPrice: price, UserId: idCustomer, StoreId: id, date: new Date() })
+            })
+            .then((order) => {
+                const idOrder = order.id
+                return OrderItem.create({ OrderId: idOrder, ProductId: idProduct, quantity: 1, price })
+            })
+            .then(() => {
+                res.redirect(`/detailStoreProduct/${id}`)
+            })
+            .catch(err => res.send(err))
+    }
+
 }
 
 module.exports = Controller
