@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Add Product</title>
+</head>
+
+<body>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="/">Shoestore</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="dataStore-detail">
+            <h1>
+               Store <%= store.name %>
+            </h1>
+        </div>
+        
+        <br>
+        <form action="/seller/<%= store.id %>/add" method="post">
+            <div>
+                Name Product
+                <input type="text" name = "name" >
+            </div>
+            <div>
+                Category
+                <select name="category" >
+                    <% category.forEach(element => { %>
+                     <option value="<%= element %>"><%= element %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div>
+                Stock
+                <input type="number" name="stock" >
+            </div>
+            <div>
+                Size
+                <input type="number" name="size" >
+            </div>
+            <div>
+                Price
+                <input type="number" name="price" >
+            </div>
+            <div>
+                Image
+                <input type="text" name="image" >
+            </div>
+            <div>
+                <input type="submit" value="Add Product" class="detail">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
-    <title>Home</title>
+    <title>Product Toko</title>
 </head>
 <body>
     <nav>
@@ -14,39 +14,38 @@
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/logout">Logout</a></li>
-            
         </ul>
     </nav>
     <div class="dataStore-detail">
-        <h1>Welcome TO MY Paradise</h1>
+        <h1>
+            <%= dataStore.name %>
+        </h1>
     </div>
     <div>
         <table border="1">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>imageFoto</th>
-                    <th>Nama Toko</th>
-                    <th>Email Toko</th>
+                    <th>Image Product</th>
+                    <th>Name Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% stores.forEach((el,index) => { %>
+                <% products.forEach((el,index) => { %>
                     <tr>
-                        <td><%= ++index %></td>
-                        <td><img src="" alt="Gambar Toko"></td>
-                        <td><%= el.name %></td>
-                        <td><%= el.emailStore %></td>
+                        <td><img src="<%= el.image %>" alt="Gambar Product"></td>
+                        <td><%= el.name %></td>                        
+                        <td><%= el.category %></td>
+                        <td><%= formatCurrency(el.price) %></td>
                         <td>
-                            <a href="/detailStoreProduct/<%= el.id %>" class="detail">Detail Toko</a>
-                            <a href="/seller/<%= el.id %>" class="detail">Seller</a>
+                            <a href="/login" class="detail">Beli</a>
                         </td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
     </div>
-    
 </body>
 </html>
