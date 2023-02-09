@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/index.css">
-    <title>Product Toko</title>
+    <title>Home</title>
 </head>
 <body>
     <nav>
@@ -14,40 +14,39 @@
             <li><a href="/login">Login</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/logout">Logout</a></li>
+            
         </ul>
     </nav>
     <div class="dataStore-detail">
-        <h1>
-            <%= dataStore.name %>
-        </h1>
+        <h1>Welcome TO MY Paradise</h1>
     </div>
     <div>
         <table border="1">
             <thead>
                 <tr>
-                    <th>Image Product</th>
-                    <th>Name Product</th>
-                    <th>Category</th>
-                    <th>Size</th>
-                    <th>Price</th>
+                    <th>No</th>
+                    <th>imageFoto</th>
+                    <th>Nama Toko</th>
+                    <th>Email Toko</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% products.forEach((el,index) => { %>
+                <% stores.forEach((el,index) => { %>
                     <tr>
-                        <td><img src="<%= el.image %>" alt="Gambar Product"></td>
-                        <td><%= el.name %></td>                        
-                        <td><%= el.category %></td>
-                        <td><%= formatCurrency(el.price) %></td>
-                        <td><%= el.size %></td>
+                        <td><%= ++index %></td>
+                        <td><img src="" alt="Gambar Toko"></td>
+                        <td><%= el.name %></td>
+                        <td><%= el.emailStore %></td>
                         <td>
-                            <a href="/customer/6/<%= dataStore.id %>/<%= el.id %>/buy" class="detail">Beli</a>
+                            <a href="/detailStoreProduct/<%= el.id %>" class="detail">Detail Toko</a>
+                            <a href="/seller/<%= el.UserId %>" class="detail">Seller</a>
                         </td>
                     </tr>
                 <% }) %>
             </tbody>
         </table>
     </div>
+    
 </body>
 </html>

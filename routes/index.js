@@ -9,6 +9,6 @@ router.get('/', Controller.home)
 router.get('/detailStoreProduct/:id', Controller.findProductStore)
 router.use('/admin', admin)
 router.use('/seller', seller)
-router.use("/product", customer)
+router.use("/customer", customer)
 
 module.exports = router

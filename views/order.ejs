@@ -1,4 +1,4 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,7 +18,7 @@
     </nav>
     <div class="dataStore-detail">
         <h1>
-            <%= store.name %>
+            <%= dataStore.name %>
         </h1>
         <br>
     </div>
@@ -27,33 +27,16 @@
         <table border="1">
             <thead>
                 <tr>
-                    <th>Name Product</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Stock</th>
+                    <th>Oder Number Customer</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <% products.forEach((el,index)=> { %>
+                <% order.forEach((el,index)=> { %>
                     <tr>
-                        <td><img src="<%= el.image %>" alt="Gambar Product"></td>
+                        <td><%= el.orderNumber %></td>
                         <td>
-                            <%= el.name %>
-                        </td>
-                        <td>
-                            <%= el.category %>
-                        </td>
-                        <td>
-                            <%= formatCurrency(el.price) %>
-                        </td>
-                        <td>
-                            <%= el.stock %>
-                        </td>
-                        <td>
-                            <a href="/seller/<%= dataStore.id %>/<%= el.id %>/delete" class="detail">delete</a>
-                            <a href="/seller/<%= dataStore.id %>/<%= el.id %>/edit" class="detail">Edit</a>
-                            <a href="/seller/<%= dataStore.id %>/<%= el.id %>/restock" class="detail">Restock</a>
+                            <a href="<%= el.id %>/order/status" class="detail">See Orderan</a>
                         </td>
                     </tr>
                     <% }) %>

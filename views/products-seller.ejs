@@ -32,6 +32,7 @@
                     <th>Image Product</th>
                     <th>Name Product</th>
                     <th>Category</th>
+                    <th>Size</th>
                     <th>Price</th>
                     <th>Stock</th>
                     <th>Action</th>
@@ -46,6 +47,9 @@
                         </td>
                         <td>
                             <%= el.category %>
+                        </td>
+                        <td>
+                            <%= el.size %>
                         </td>
                         <td>
                             <%= formatCurrency(el.price) %>
