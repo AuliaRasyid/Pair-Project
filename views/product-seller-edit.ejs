@@ -25,7 +25,15 @@
                 With Product Name is <%= product.name %>
              </p>
         </div>
-        
+        <div class="dataStore-detail">
+            <% if (errors) { %>
+                <% errors.split(',').forEach(element => { %>
+                    <div style="color: red;">
+                        <%= element %> 
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
         <br>
         <form action="/seller/<%= dataStore.id %>/<%= product.id %>/edit" method="post">
             <div>

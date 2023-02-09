@@ -17,9 +17,42 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Store.init({
-    name: DataTypes.STRING,
-    emailStore: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Name Store cannot Null'
+        },
+        notEmpty: {
+          msg: 'Name Store cannot Empty'
+        }
+      }
+    },
+    emailStore: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Email Store cannot Null'
+        },
+        notEmpty: {
+          msg: 'Email Store cannot Empty'
+        }
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'User Store cannot Null'
+        },
+        notEmpty: {
+          msg: 'User Store cannot Empty'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Store',

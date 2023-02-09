@@ -21,7 +21,7 @@ router.use("/register",register)
 
 router.use('/admin', admin)
 router.use('/seller', seller)
-router.use("/product", customer)
+router.use("/customer", customer)
 
 
 

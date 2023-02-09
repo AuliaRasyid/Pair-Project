@@ -21,9 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     date: DataTypes.DATE,
     totalPrice: DataTypes.INTEGER,
     status: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-     },
+     type: DataTypes.BOOLEAN,
+     defaultValue: false
+    },
     orderNumber: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
     StoreId: DataTypes.INTEGER,
@@ -31,8 +31,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Order',
   });
-  Order.beforeCreate((order)=>{
-    order.orderNumber = `${Math.random()}-${order.date}`
-  })
   return Order;
 };

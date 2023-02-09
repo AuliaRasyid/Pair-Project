@@ -21,22 +21,32 @@
             <%= dataStore.name %>
         </h1>
         <br>
+        <h3>
+            <%= order.orderNumber %>
+        </h3>
+        <p style="text-align:right; margin-right: 10%;"><a href="/seller/<%= order.id %>/status" class="detail">Change Status</a> </p>
     </div>
-
+    
     <div>
         <table border="1">
             <thead>
                 <tr>
-                    <th>Oder Number Customer</th>
-                    <th>Action</th>
+                    <th>Nama Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
                 </tr>
             </thead>
             <tbody>
-                <% order.forEach((el,index)=> { %>
+                <% order.Products.forEach((el,index)=> { %>
                     <tr>
-                        <td><%= el.orderNumber %></td>
                         <td>
-                            <a href="<%= el.id %>/order/status" class="detail">See Orderan</a>
+                            <%= el.name %>
+                        </td>
+                        <td>
+                            <%= el.OrderItem.quantity %>
+                        </td>
+                        <td>
+                           <%= el.price %>
                         </td>
                     </tr>
                     <% }) %>

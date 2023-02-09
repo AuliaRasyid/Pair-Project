@@ -22,7 +22,15 @@
                Store <%= store.name %>
             </h1>
         </div>
-        
+        <div class="dataStore-detail">
+            <% if (errors) { %>
+                <% errors.split(',').forEach(element => { %>
+                    <div style="color: red;">
+                        <%= element %> 
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
         <br>
         <form action="/seller/<%= store.id %>/add" method="post">
             <div>
@@ -32,6 +40,7 @@
             <div>
                 Category
                 <select name="category" >
+                    <option value="" selected disabled></option>
                     <% category.forEach(element => { %>
                      <option value="<%= element %>"><%= element %></option>
                     <% }) %>
