@@ -4,7 +4,16 @@ const { Op } = require("sequelize");
 class Controller {
 
     static home(req, res) {
-        Store.findAll()
+        let option = {}
+        const { search } = req.query
+        if (search) {
+            option.where = {
+                name:{
+                    [Op.iLike]: `%${search}%`
+                }
+            }
+        }
+        Store.findAll(option)
             .then(stores => {
                 res.render('homeCustomer', { stores })
             })
@@ -334,6 +343,20 @@ class Controller {
             })
             .then(() => {
                 res.redirect(`/seller/${StoreId}/order`)
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static showOrder(req, res) {
+        const { idCustomer } = req.params
+        User.findByPk(idCustomer, {
+            include: Order
+        })
+            .then(user => {
+                res.render('customer-order', { user, formatCurrency })
+                // res.send(user)
             })
             .catch(err => {
                 res.send(err)
