@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>EditProduct</title>
+</head>
+
+<body>
+    <div>
+        <nav>
+            <ul>
+                <li><a href="/">Shoestore</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="dataStore-detail">
+            <h1>
+               Store <%= dataStore.name %>
+            </h1>
+            <p>
+                With Product Name is <%= product.name %>
+             </p>
+        </div>
+        
+        <br>
+        <form action="/seller/<%= dataStore.id %>/<%= product.id %>/edit" method="post">
+            <div>
+                Name Product
+                <input type="text" name = "name" value="<%= product.name %>">
+            </div>
+            <div>
+                Category
+                <select name="category" >
+                    <% category.forEach(element => { %>
+                     <option value="<%= element %>"><%= element %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div>
+                Stock
+                <input type="number" name="stock" value="<%= product.stock %>">
+            </div>
+            <div>
+                Size
+                <input type="number" name="size" value="<%= product.size %>">
+            </div>
+            <div>
+                Price
+                <input type="number" name="price" value="<%= product.price %>">
+            </div>
+            <div>
+                Image
+                <input type="text" name="image" value="<%= product.image %>">
+            </div>
+            <div>
+                <input type="submit" value="Edit" class="detail">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

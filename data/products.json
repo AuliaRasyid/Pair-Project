@@ -3,28 +3,36 @@
         "name": "Sepatu Baru ",
         "StoreId": 1,
         "stock": 10,
+        "size": 20,
         "category": "NIKE",
+        "image": "https",
         "price": 100000
     },
     {
         "name": "Sepatu Baru Banget ",
         "StoreId": 1,
         "stock": 10,
+        "size": 20,
         "category": "Lokak",
+        "image": "https",
         "price": 100000
     },
     {
         "name": "Sepatu Lama",
         "StoreId": 2,
         "stock": 20,
+        "size": 20,
         "category": "Vans",
+        "image": "https",
         "price": 200000
     },
     {
         "name": "Sepatu Gak lama-lama banget",
         "StoreId": 3,
         "stock": 30,
+        "size": 20,
         "category": "Converse",
+        "image": "https",
         "price": 300000
     }
 ]
