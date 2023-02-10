@@ -4,39 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/index.css">
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <nav>
-            
-            <ul class="nav__links">
-                <li><h3>Nama Toko</h3></li>
-                <li><a href="#">Home</a></li>
-            </ul>
-        </nav>
-        
-    </header>
-    <br><br>
-    <form action="" method="post" style="text-align: center;">
+    
+    <form action="/register" method="post" style="text-align: center;">
         <div>
-            <label for="">Username</label><br>
-            <input type="email" name="username">
+            <label for="">Email</label><br>
+            <input type="email" name="email">
+        </div><br>
+        <div>
+            <label for="">User Name</label><br>
+            <input type="text" name="userName">
         </div><br>
         <div>
             <label for="">Password</label><br>
-            <input type="password" id="email" name="password">
+            <input type="password"  name="password">
         </div><br>
         <div>
             <label for="">Role</label><br>
             <select name="role" id="">
                 <option value="" selected disabled>--Select Your Role--</option>
-                <option value="admin">Admin</option>
+                <option value="Pembeli">Pembeli</option>
+                <option value="Penjual">Penjual</option>
             </select>
             
         </div><br>
-        <input type="submit" value="login">
+        <input type="submit" value="register">
     </form>
 </body>
 </html>

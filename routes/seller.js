@@ -2,6 +2,11 @@ const Controller = require('../controllers/controller')
 
 const router = require('express').Router()
 
+const {isLogin,penjual,toko} = require("../midleware/auth")
+
+router.use(isLogin)
+router.use(penjual)
+
 router.get('/', Controller.homeSeller)
 router.get('/:id', Controller.productSeller)
 router.get('/:id/add', Controller.showAddProduct)

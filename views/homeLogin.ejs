@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Home</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Shoestore</a></li>
+            <li><a href="/detailUser">Add your personal data</a></li>
+            <li><a href="/logout">Logout</a></li>
+            
+        </ul>
+    </nav>
+    <div class="dataStore-detail">
+        <h1>Welcome TO MY Paradise</h1>
+    </div>
+    <% if (error) { %>
+        <h2 style="text-align: center; color: red;"><%= error %></h2>
+       <% } %>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>imageFoto</th>
+                    <th>Nama Toko</th>
+                    <th>Email Toko</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% stores.forEach((el,index) => { %>
+                    <tr>
+                        <td><%= ++index %></td>
+                        <td><img src="" alt="Gambar Toko"></td>
+                        <td><%= el.name %></td>
+                        <td><%= el.emailStore %></td>
+                        <td>
+                            <a href="/detailStoreProduct/<%= el.id %>" class="detail">Detail Toko</a>
+                            <a href="/seller/<%= el.UserId %>" class="detail">Seller</a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
